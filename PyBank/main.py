@@ -1,4 +1,5 @@
 
+
 import csv
 import os
 
@@ -27,23 +28,23 @@ with open(file_to_load) as csvfile:
 
     for x in csvreader:
         
-        total_net= (total_net + int(x[1]))
+        total_net= (total_net + int(x[1])) #tracking total net change
         total_months= total_months+1
         
-        if total_months != 1: #have to remove initial value
+        if total_months != 1: #have to remove initial value, net change should be 0
             difference = (int(x[1]) - day)
         else:
             difference = 0
 
         t_sum = t_sum + difference
-        if difference > greatest_inc:
+        if difference > greatest_inc:# this part is to find the greatest increases and decreases
             greatest_inc_mo = x
             greatest_inc = difference
         elif difference < greatest_dec: 
             greatest_dec_mo = x
             greatest_dec = difference
 
-        day = int(x[1])
+        day = int(x[1]) #stores previous day's value
 
 print(f"There were {total_months} months in total")        
 print(f"Total: ${total_net}")
@@ -52,11 +53,15 @@ print(f"Greatest increase in profits: ${greatest_inc} in {greatest_inc_mo[0]}")
 print(f"Greatest decrease in profits: ${greatest_dec} in {greatest_dec_mo[0]}")
 
 
-with open(file_to_output, "w") as txt_file:
+
+with open(file_to_output, "w") as txt_file: # printing as text file
     txt_file.write(
         f"Months: {total_months} \n"
         f"Total: ${total_net} \n"
         f"Average Change was: ${round((t_sum/total_months-1),2)} \n"
         f"Months:Greatest increase in profits: ${greatest_inc} in {greatest_inc_mo[0]}\n"
         f"Greatest decrease in profits: ${greatest_dec} in {greatest_dec_mo[0]}")
+
+
+
 

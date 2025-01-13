@@ -1,4 +1,6 @@
 
+
+
 import csv
 import os
 
@@ -20,7 +22,7 @@ with open(file_to_load) as election_data:
     # Skip the header row
     header = next(reader)
 
-    # Loop through each row of the dataset and process it
+    # Loop through and putting names in candidate list
     for x in reader:
         total_votes = total_votes + 1
         if x[2] not in candidates:
@@ -33,12 +35,13 @@ with open(file_to_load) as election_data:
     print(f"The total number of votes is {total_votes}")
 
     can = 0 # simplest solution to have list advance in the for loop
-    for x in candidates:
+    for x in candidates: #cycles through list and prints candidates and corresponding votes and %
         print(f"{candidate_list[can]} got {candidates[x]} votes, {round((candidates[x]/total_votes)*100,3)}% of total")
         can = can+1
     can = 0 
     
-    print(f"Winner is {max(candidates, key = candidates.get)} with {max(candidates.values())} votes!")
+    print(f"Winner is {max(candidates, key = candidates.get)} with {max(candidates.values())} votes!") # highest votes in dictionary, printing key value pair
+
 
 
 can = 0 #just in case last block was not run again
@@ -46,13 +49,11 @@ with open(file_to_output, "w") as txt_file:
     txt_file.write(
         f"The total number of votes is {total_votes}\n")
     
-    for x in candidates:
+    for x in candidates: #cycles through list and prints candidates and corresponding votes and %
         txt_file.write(
         f"{candidate_list[can]} got {candidates[x]} votes, {round((candidates[x]/total_votes)*100,3)}% of total\n")
         can = can+1
     txt_file.write(
         f"Winner is {max(candidates, key = candidates.get)} with {max(candidates.values())} votes! \n")
-
-
 
 
