@@ -15,5 +15,5 @@ To ensure proper operation of the code, confirm that the proper CSVs are in the 
 3. Check the "analysis" folder and ensure the text file properly displays the printed output
 
 ## Any other script writers
-1. If using VScode or any other script program simply run the code
+1. If using VScode or any other script program simply open "main.py" run the code
 2. Check the "analysis" folder and ensure the text file properly displays the printed output
